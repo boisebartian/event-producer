@@ -1,0 +1,16 @@
+spring:
+  rabbitmq:
+    host: rabbit-mq
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      bindings:
+        output:
+          destination: hotel
+      rabbit:
+        bindings:
+          output:
+            producer:
+              routing-key-expression: headers['routingKey']

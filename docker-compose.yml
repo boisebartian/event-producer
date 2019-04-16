@@ -1,0 +1,17 @@
+version: '3'
+services:
+  rabbit-mq:
+    image: "rabbitmq:3-management"
+    ports:
+    - "4369:4369"
+    - "5671:5671"
+    - "5672:5672"
+    - "25672:25672"
+    - "15672:15672"
+  event-producer:
+    build: .
+    image: event-producer:latest
+    depends_on:
+      - rabbit-mq
+    ports:
+      - "8082:8080"
